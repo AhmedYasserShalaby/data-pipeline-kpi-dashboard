@@ -79,6 +79,12 @@ Re-export KPIs from the current SQLite database:
 retail-kpi run-kpis
 ```
 
+Open the optional Streamlit dashboard:
+
+```bash
+streamlit run app/streamlit_dashboard.py
+```
+
 Run tests:
 
 ```bash
@@ -93,6 +99,7 @@ pytest
 - Data quality report: `docs/data_quality_report.md`
 - Business insights: `docs/insights.md`
 - Dashboard assets: `dashboard/`
+- Optional Streamlit dashboard: `app/streamlit_dashboard.py`
 
 ## Sample KPI Output
 
@@ -121,7 +128,7 @@ Data quality summary:
 
 ## Dashboard Plan
 
-Version 1 uses Tableau. The dashboard should contain:
+Version 1 uses Tableau, with Streamlit included as a quick local preview. The dashboard should contain:
 
 - Executive Overview
 - Sales Trends

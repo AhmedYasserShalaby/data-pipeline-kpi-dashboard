@@ -12,6 +12,7 @@
 
 - Build Tableau dashboard and add screenshots.
 - Add Power BI version after Tableau.
+- Deploy Streamlit dashboard publicly if a simple live demo is needed.
 - Add KPI definitions page for business users.
 - Add drill-down pages for product, customer, and returns analysis.
 

@@ -5,6 +5,8 @@ description = "BI/Data Engineering portfolio project for sales KPI reporting."
 requires-python = ">=3.10"
 dependencies = [
     "pandas>=2.0",
+    "plotly>=6.0",
+    "streamlit>=1.40",
     "tabulate>=0.9",
     "pyyaml>=6.0",
 ]
