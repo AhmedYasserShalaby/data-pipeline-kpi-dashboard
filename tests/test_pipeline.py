@@ -37,6 +37,9 @@ def test_pipeline_creates_sqlite_tables_and_kpi_exports():
         "customer_analysis.csv",
         "returns_quality.csv",
         "data_quality_issues.csv",
+        "data_quality_summary.csv",
     ]
     for filename in required_exports:
         assert (Path(export_dir) / filename).exists()
+
+    assert Path("docs/data_quality_report.md").exists()

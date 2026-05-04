@@ -25,6 +25,7 @@ def main() -> None:
         outputs = run_pipeline()
         print(f"SQLite database: {outputs['database']}")
         print(f"Dashboard exports: {outputs['exports']}")
+        print("Data quality report: docs/data_quality_report.md")
     elif args.command == "run-kpis":
         settings = load_settings()
         database_path = project_path(settings["database"]["path"])
