@@ -102,6 +102,7 @@ pytest
 - Tableau-ready exports: `data/processed/dashboard_exports/`
 - Data quality report: `docs/data_quality_report.md`
 - Business insights: `docs/insights.md`
+- Streamlit deployment guide: `docs/deployment.md`
 - Dashboard assets: `dashboard/`
 - Optional Streamlit dashboard: `app/streamlit_dashboard.py`
 
