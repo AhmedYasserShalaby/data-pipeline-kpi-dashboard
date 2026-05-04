@@ -24,3 +24,9 @@ jobs:
 
       - name: Run tests
         run: pytest
+
+      - name: Run pipeline smoke test
+        run: |
+          retail-kpi generate-data
+          retail-kpi run-pipeline
+          retail-kpi run-kpis
