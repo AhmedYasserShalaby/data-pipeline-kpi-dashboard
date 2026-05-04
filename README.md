@@ -15,6 +15,7 @@ Retail managers often receive disconnected CSV exports from customer, product, o
 - Tableau-ready exports for dashboard building
 - Tests for cleaning logic, revenue calculations, table creation, and KPI consistency
 - Data quality summary showing raw rows, cleaned rows, validation issues, and clean rates
+- Business insights and recommendations based on exported KPI data
 
 ## Architecture
 
@@ -90,6 +91,7 @@ pytest
 - Cleaned CSVs: `data/processed/`
 - Tableau-ready exports: `data/processed/dashboard_exports/`
 - Data quality report: `docs/data_quality_report.md`
+- Business insights: `docs/insights.md`
 - Dashboard assets: `dashboard/`
 
 ## Dashboard Plan
