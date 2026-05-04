@@ -94,6 +94,31 @@ pytest
 - Business insights: `docs/insights.md`
 - Dashboard assets: `dashboard/`
 
+## Sample KPI Output
+
+Executive overview from the generated dataset:
+
+| total_revenue | total_orders | total_customers | average_order_value | gross_profit | gross_margin | refunded_amount | return_rate |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 2,596,393.60 | 875 | 120 | 2,967.31 | 836,354.52 | 32.21% | 175,293.94 | 8.34% |
+
+Top product categories by revenue:
+
+| category | revenue |
+| --- | ---: |
+| Grocery | 645,930.73 |
+| Electronics | 644,942.45 |
+| Office Supplies | 517,154.04 |
+
+Data quality summary:
+
+| table_name | raw_rows | clean_rows | validation_issues | clean_rate |
+| --- | ---: | ---: | ---: | ---: |
+| customers | 121 | 120 | 0 | 99.17% |
+| products | 30 | 30 | 0 | 100.00% |
+| orders | 902 | 875 | 27 | 97.01% |
+| returns | 73 | 73 | 0 | 100.00% |
+
 ## Dashboard Plan
 
 Version 1 uses Tableau. The dashboard should contain:
