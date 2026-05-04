@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#f7f7f4"/>
+  <text x="48" y="64" font-family="Arial" font-size="32" font-weight="700" fill="#1f2933">Retail KPI Dashboard</text>
+  <text x="48" y="96" font-family="Arial" font-size="16" fill="#52616b">Executive overview mockup for Tableau build</text>
+
+  <g fill="#ffffff" stroke="#d0d7de">
+    <rect x="48" y="130" width="200" height="105" rx="6"/>
+    <rect x="270" y="130" width="200" height="105" rx="6"/>
+    <rect x="492" y="130" width="200" height="105" rx="6"/>
+    <rect x="714" y="130" width="200" height="105" rx="6"/>
+    <rect x="936" y="130" width="200" height="105" rx="6"/>
+  </g>
+  <g font-family="Arial" fill="#1f2933">
+    <text x="68" y="165" font-size="14">Total Revenue</text>
+    <text x="68" y="205" font-size="28" font-weight="700">$458K</text>
+    <text x="290" y="165" font-size="14">Orders</text>
+    <text x="290" y="205" font-size="28" font-weight="700">886</text>
+    <text x="512" y="165" font-size="14">Avg Order Value</text>
+    <text x="512" y="205" font-size="28" font-weight="700">$517</text>
+    <text x="734" y="165" font-size="14">Gross Margin</text>
+    <text x="734" y="205" font-size="28" font-weight="700">34%</text>
+    <text x="956" y="165" font-size="14">Return Rate</text>
+    <text x="956" y="205" font-size="28" font-weight="700">7.8%</text>
+  </g>
+
+  <g fill="#ffffff" stroke="#d0d7de">
+    <rect x="48" y="270" width="535" height="290" rx="6"/>
+    <rect x="610" y="270" width="526" height="290" rx="6"/>
+    <rect x="48" y="590" width="1088" height="110" rx="6"/>
+  </g>
+  <text x="72" y="310" font-family="Arial" font-size="18" font-weight="700" fill="#1f2933">Monthly Revenue Trend</text>
+  <polyline points="88,500 130,470 172,485 214,430 256,450 298,390 340,405 382,355 424,370 466,325 508,300 550,320" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <line x1="88" y1="520" x2="550" y2="520" stroke="#9aa5b1"/>
+  <line x1="88" y1="330" x2="88" y2="520" stroke="#9aa5b1"/>
+
+  <text x="634" y="310" font-family="Arial" font-size="18" font-weight="700" fill="#1f2933">Revenue by Category</text>
+  <g fill="#10b981">
+    <rect x="650" y="355" width="390" height="28"/>
+    <rect x="650" y="400" width="330" height="28"/>
+    <rect x="650" y="445" width="270" height="28"/>
+    <rect x="650" y="490" width="210" height="28"/>
+  </g>
+  <g font-family="Arial" font-size="14" fill="#1f2933">
+    <text x="650" y="350">Electronics</text>
+    <text x="650" y="395">Home</text>
+    <text x="650" y="440">Office Supplies</text>
+    <text x="650" y="485">Sports</text>
+  </g>
+
+  <text x="72" y="628" font-family="Arial" font-size="18" font-weight="700" fill="#1f2933">Business Questions Answered</text>
+  <text x="72" y="660" font-family="Arial" font-size="15" fill="#52616b">Which months are growing? Which products drive revenue? Which customers repeat? Which categories create refund exposure?</text>
+</svg>

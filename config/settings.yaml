@@ -1,0 +1,29 @@
+database:
+  path: data/processed/kpi_dashboard.sqlite
+
+raw_data:
+  customers: data/raw/customers.csv
+  products: data/raw/products.csv
+  orders: data/raw/orders.csv
+  returns: data/raw/returns.csv
+
+processed_data:
+  customers: data/processed/customers_clean.csv
+  products: data/processed/products_clean.csv
+  orders: data/processed/orders_clean.csv
+  returns: data/processed/returns_clean.csv
+
+exports:
+  directory: data/processed/dashboard_exports
+  executive_overview: data/processed/dashboard_exports/executive_overview.csv
+  monthly_revenue: data/processed/dashboard_exports/monthly_revenue.csv
+  product_performance: data/processed/dashboard_exports/product_performance.csv
+  customer_analysis: data/processed/dashboard_exports/customer_analysis.csv
+  returns_quality: data/processed/dashboard_exports/returns_quality.csv
+  data_quality_issues: data/processed/dashboard_exports/data_quality_issues.csv
+
+generator:
+  seed: 42
+  customers: 120
+  products: 30
+  orders: 900

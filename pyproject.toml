@@ -1,0 +1,21 @@
+[project]
+name = "data-pipeline-kpi-dashboard"
+version = "0.1.0"
+description = "BI/Data Engineering portfolio project for sales KPI reporting."
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+retail-kpi = "pipeline.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
