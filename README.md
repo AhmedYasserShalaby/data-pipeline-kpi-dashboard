@@ -29,6 +29,10 @@ Synthetic raw CSVs
   -> Executive dashboard
 ```
 
+## Dashboard Preview
+
+![Streamlit dashboard preview](dashboard/screenshots/streamlit_dashboard.png)
+
 ## KPIs
 
 - Total revenue
