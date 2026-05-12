@@ -22,11 +22,44 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
 
+      - name: Run lint
+        run: ruff check .
+
+      - name: Check formatting
+        run: ruff format --check .
+
       - name: Run tests
-        run: pytest
+        run: pytest --cov=src/pipeline --cov-report=term-missing
 
       - name: Run pipeline smoke test
         run: |
           retail-kpi generate-data
-          retail-kpi run-pipeline
+          retail-kpi run-pipeline --mode full
+          retail-kpi run-pipeline --mode incremental
           retail-kpi run-kpis
+          retail-kpi validate-contracts
+
+      - name: Run dashboard bootstrap smoke test
+        run: |
+          rm -f data/processed/dashboard_exports/*.csv data/processed/*.sqlite data/raw/*.csv
+          python -m py_compile app/streamlit_dashboard.py
+          python - <<'PY'
+          from pathlib import Path
+
+          from pipeline.bootstrap import ensure_demo_outputs
+          from pipeline.health import assert_pipeline_outputs, required_export_paths
+
+          generated = ensure_demo_outputs()
+          assert generated is True
+          assert_pipeline_outputs()
+          missing = [path for path in required_export_paths().values() if not Path(path).exists()]
+          assert not missing
+          PY
+
+      - name: Verify generated export integrity
+        run: |
+          python - <<'PY'
+          from pipeline.health import assert_pipeline_outputs
+
+          assert_pipeline_outputs()
+          PY
