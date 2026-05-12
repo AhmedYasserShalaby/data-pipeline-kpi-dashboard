@@ -48,3 +48,31 @@
 | return_date | Clean return date |
 | reason | Return reason |
 | refunded_amount | Amount refunded to customer |
+
+## pipeline_runs
+
+| Column | Description |
+| --- | --- |
+| run_id | Unique pipeline run identifier |
+| mode | Full or incremental load mode |
+| started_at_utc | Run start timestamp |
+| finished_at_utc | Run finish timestamp |
+| duration_seconds | Runtime in seconds |
+| status | Run status |
+| rows_read | Raw rows read across all sources |
+| rows_cleaned | Clean rows produced across all tables |
+| rows_rejected | Raw rows rejected during cleaning |
+| validation_issues | Contract and cleaning issues written to issue exports |
+| loaded_rows | Rows inserted into SQLite for this run |
+| exports_directory | Dashboard export directory |
+
+## data_quality_issues export
+
+| Column | Description |
+| --- | --- |
+| table_name | Source table with the issue |
+| issue_source | Contract or cleaning |
+| issue_type | Validation or cleaning rule that failed |
+| row_reference | Row identifier or source index |
+| column_name | Column linked to the issue |
+| issue_detail | Human-readable issue detail |

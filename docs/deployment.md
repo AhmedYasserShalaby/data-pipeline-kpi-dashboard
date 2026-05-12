@@ -6,7 +6,10 @@ Use Streamlit Community Cloud to create a public demo link for recruiters.
 
 - GitHub repo is public: `https://github.com/HaloXD1/data-pipeline-kpi-dashboard`
 - App file: `app/streamlit_dashboard.py`
-- Python dependencies are in `pyproject.toml`
+- Python dependencies are installable from `requirements.txt`
+- Runtime file: `runtime.txt`
+
+The app bootstraps demo outputs when KPI CSV files are missing, so ignored generated files do not need to be committed.
 
 ## Deploy Steps
 
@@ -33,4 +36,18 @@ Add the live URL to:
 
 ## Suggested Demo Text
 
-Retail KPI Dashboard demo built with Python, pandas, SQL, SQLite, and Streamlit. The project generates messy retail exports, cleans and validates the data, loads KPI-ready tables, and visualizes revenue, margin, customer, product, and returns performance.
+Retail KPI dashboard demo built with Python, pandas, SQL, SQLite, YAML data contracts, and Streamlit. The project generates messy retail exports, validates and cleans the data, loads KPI-ready warehouse tables, tracks pipeline run quality, and visualizes revenue, margin, customer, product, returns, and data-quality performance.
+
+## Docker
+
+Run dashboard:
+
+```bash
+docker compose up dashboard
+```
+
+Run pipeline:
+
+```bash
+docker compose run --rm pipeline retail-kpi run-pipeline --mode full
+```

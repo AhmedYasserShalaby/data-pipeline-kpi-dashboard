@@ -5,14 +5,15 @@
 - Move from SQLite to PostgreSQL.
 - Add Prefect for lightweight pipeline orchestration.
 - Add Airflow as an enterprise-style orchestration version.
-- Add incremental loading instead of full refresh.
-- Add data contracts and stronger validation rules.
+- Add Slowly Changing Dimension handling for changed customer/product attributes.
+- Add dbt-style transformation models and lineage docs.
+- Add alerting for failed runs and low quality scores.
 
 ## BI
 
-- Build Tableau dashboard and add screenshots.
+- Publish the Streamlit dashboard publicly.
+- Build Tableau Public dashboard and add screenshots.
 - Add Power BI version after Tableau.
-- Deploy Streamlit dashboard publicly if a simple live demo is needed.
 - Add KPI definitions page for business users.
 - Add drill-down pages for product, customer, and returns analysis.
 

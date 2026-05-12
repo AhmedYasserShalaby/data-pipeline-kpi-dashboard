@@ -31,6 +31,8 @@ These insights are based on the generated retail KPI exports in `data/processed/
 - Beauty products with `Changed Mind` returns created the highest refund amount at `$20,188.71`.
 - Grocery had refund exposure from both damaged and quality-related returns.
 - Return-rate monitoring should be part of monthly reporting because returns affect revenue quality, not only sales volume.
+- The latest full run read `1,128` rows, cleaned `1,098`, rejected `30`, and recorded `55` validation or cleaning issues.
+- Product data had a `100%` clean rate, while orders had the highest issue volume because of duplicate orders, invalid quantities, and missing customer links.
 
 ## Recommendations
 

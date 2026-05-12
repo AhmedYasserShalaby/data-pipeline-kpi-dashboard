@@ -1,110 +1,138 @@
 # Retail Data Pipeline and KPI Dashboard
 
-Portfolio BI/Data Engineering project that turns messy retail sales exports into clean SQL tables, KPI datasets, and dashboard-ready files for executive reporting.
+[![Tests](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/tests.yml)
+[![Secret Scan](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml)
+
+Portfolio Data Engineering / BI project that turns messy retail exports into validated SQLite warehouse tables, KPI datasets, run summaries, and a recruiter-ready Streamlit dashboard.
+
+## Live Demo
+
+Streamlit Cloud URL: _add after deployment._
+
+The dashboard is demo-safe: if ignored KPI exports are missing, it generates synthetic data, runs the pipeline, verifies outputs, and then loads the dashboard.
 
 ## Business Case
 
-Retail managers often receive disconnected CSV exports from customer, product, order, and returns systems. These files usually contain inconsistent dates, duplicate records, invalid quantities, missing fields, and category formatting issues. This project builds a repeatable analytics pipeline that cleans those exports and produces reliable KPIs for sales, product, customer, and returns performance.
+Retail managers receive disconnected CSV exports from customer, product, order, and returns systems. The files contain duplicate records, inconsistent dates, invalid quantities, missing dimension links, and inconsistent formatting. This project builds a repeatable analytics pipeline that cleans those exports and produces reliable KPIs for revenue, margin, product, customer, returns, and data quality reporting.
 
 ## What This Project Demonstrates
 
-- Synthetic retail data generation with realistic data quality issues
-- Python/pandas cleaning and business-rule validation
-- SQLite data warehouse tables for customers, products, orders, and returns
-- SQL KPI outputs for executive reporting
-- Tableau-ready exports for dashboard building
-- Tests for cleaning logic, revenue calculations, table creation, and KPI consistency
-- Data quality summary showing raw rows, cleaned rows, validation issues, and clean rates
-- Business insights and recommendations based on exported KPI data
+- Python CLI pipeline for raw CSV ingestion, cleaning, validation, loading, and KPI export
+- YAML data contracts for required columns, ID formats, ranges, dates, allowed values, duplicate keys, and foreign keys
+- Full and incremental SQLite loading with idempotent reruns
+- SQLite warehouse tables for dimensions, fact-style tables, and pipeline run metadata
+- SQL KPI exports for executive reporting
+- Pipeline health checks for required exports, quality score thresholds, and KPI/database consistency
+- Streamlit dashboard with executive, sales, product, customer, and data-quality views
+- CI with Ruff linting, Ruff format check, pytest coverage, smoke tests, export integrity checks, and secret scanning
+- Docker and Docker Compose for reproducible local runs
 
 ## Architecture
 
-```text
-Synthetic raw CSVs
-  -> Python CLI pipeline
-  -> cleaning + validation
-  -> SQLite warehouse
-  -> SQL KPI queries
-  -> Tableau-ready CSV exports
-  -> Executive dashboard
+```mermaid
+flowchart LR
+    A[Raw retail CSV exports] --> B[Python CLI]
+    B --> C[YAML data contracts]
+    C --> D[Cleaning and validation]
+    D --> E[SQLite warehouse]
+    E --> F[SQL KPI exports]
+    E --> G[Pipeline run metadata]
+    F --> H[Streamlit dashboard]
+    F --> I[Tableau-ready CSVs]
+    D --> J[Data quality report]
 ```
+
+See [architecture docs](docs/architecture.md) for the warehouse ERD and design notes.
 
 ## Dashboard Preview
 
 ![Streamlit dashboard preview](dashboard/screenshots/streamlit_dashboard.png)
 
-## KPIs
-
-- Total revenue
-- Monthly revenue growth
-- Average order value
-- Gross profit and gross margin
-- Revenue by category
-- Top products
-- Top customers
-- Repeat customer flag
-- Return/refund rate
-
 ## Tech Stack
 
-- Python
-- pandas
-- SQL
-- SQLite
-- Tableau first
-- Power BI later
-- pytest
+- Python, pandas, SQL, SQLite
+- Streamlit, Plotly
+- YAML data contracts
+- pytest, pytest-cov, Ruff, GitHub Actions
+- Docker, Docker Compose
+- Tableau-ready CSV exports
 
-## Setup
+## Local Run
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
-```
-
-## Usage
-
-Generate synthetic raw data:
-
-```bash
 retail-kpi generate-data
-```
-
-Run the full pipeline:
-
-```bash
-retail-kpi run-pipeline
-```
-
-Re-export KPIs from the current SQLite database:
-
-```bash
-retail-kpi run-kpis
-```
-
-Open the optional Streamlit dashboard:
-
-```bash
+retail-kpi run-pipeline --mode full
 streamlit run app/streamlit_dashboard.py
 ```
 
-Run tests:
+Incremental run:
 
 ```bash
-pytest
+retail-kpi run-pipeline --mode incremental
+```
+
+Validate raw data contracts:
+
+```bash
+retail-kpi validate-contracts
+```
+
+## Docker Run
+
+Dashboard:
+
+```bash
+docker compose up dashboard
+```
+
+Pipeline:
+
+```bash
+docker compose run --rm pipeline retail-kpi run-pipeline --mode full
+```
+
+## Testing
+
+```bash
+ruff check .
+ruff format --check .
+pytest --cov=src/pipeline --cov-report=term-missing
+retail-kpi generate-data
+retail-kpi run-pipeline --mode full
+retail-kpi run-pipeline --mode incremental
+retail-kpi run-kpis
+retail-kpi validate-contracts
+```
+
+Shortcut commands:
+
+```bash
+make setup
+make test
+make coverage
+make lint
+make format-check
+make smoke
+make dashboard
 ```
 
 ## Outputs
 
 - SQLite database: `data/processed/kpi_dashboard.sqlite`
 - Cleaned CSVs: `data/processed/`
-- Tableau-ready exports: `data/processed/dashboard_exports/`
+- Dashboard exports: `data/processed/dashboard_exports/`
+- Data quality issues: `data/processed/dashboard_exports/data_quality_issues.csv`
+- Data quality summary: `data/processed/dashboard_exports/data_quality_summary.csv`
+- Pipeline run summary: `data/processed/dashboard_exports/pipeline_run_summary.csv`
 - Data quality report: `docs/data_quality_report.md`
+- Pipeline run report: `docs/run_summary.md`
 - Business insights: `docs/insights.md`
-- Streamlit deployment guide: `docs/deployment.md`
-- Dashboard assets: `dashboard/`
-- Optional Streamlit dashboard: `app/streamlit_dashboard.py`
+- Streamlit dashboard: `app/streamlit_dashboard.py`
+
+Generated raw/processed files are ignored so the repository stays clean.
 
 ## Sample KPI Output
 
@@ -114,37 +142,41 @@ Executive overview from the generated dataset:
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 2,596,393.60 | 875 | 120 | 2,967.31 | 836,354.52 | 32.21% | 175,293.94 | 8.34% |
 
-Top product categories by revenue:
-
-| category | revenue |
-| --- | ---: |
-| Grocery | 645,930.73 |
-| Electronics | 644,942.45 |
-| Office Supplies | 517,154.04 |
-
 Data quality summary:
 
-| table_name | raw_rows | clean_rows | validation_issues | clean_rate |
-| --- | ---: | ---: | ---: | ---: |
-| customers | 121 | 120 | 0 | 99.17% |
-| products | 30 | 30 | 0 | 100.00% |
-| orders | 902 | 875 | 27 | 97.01% |
-| returns | 73 | 73 | 0 | 100.00% |
+| table_name | raw_rows | clean_rows | rejected_rows | validation_issues | clean_rate | quality_score |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| customers | 121 | 120 | 1 | 1 | 99.17% | 99.17% |
+| products | 30 | 30 | 0 | 0 | 100.00% | 100.00% |
+| orders | 902 | 875 | 27 | 52 | 97.01% | 94.24% |
+| returns | 75 | 73 | 2 | 2 | 97.33% | 97.33% |
 
-## Dashboard Plan
+Latest full run:
 
-Version 1 uses Tableau, with Streamlit included as a quick local preview. The dashboard should contain:
+| rows_read | rows_cleaned | rows_rejected | validation_issues | loaded_rows |
+| ---: | ---: | ---: | ---: | ---: |
+| 1,128 | 1,098 | 30 | 55 | 1,098 |
 
-- Executive Overview
-- Sales Trends
-- Product Performance
-- Customer Analysis
-- Returns and Quality
+## Docs
 
-Power BI will be added later as a second dashboard version.
+- [Architecture](docs/architecture.md)
+- [KPI definitions](docs/kpi_definitions.md)
+- [Data contracts](docs/data_contracts.md)
+- [Data quality report](docs/data_quality_report.md)
+- [Run summary](docs/run_summary.md)
+- [Deployment guide](docs/deployment.md)
+- [Interview guide](docs/interview_guide.md)
+
+## Interview Talking Points
+
+- This is an ETL/data-quality project first, dashboard second.
+- Data contracts make expected schema and business rules explicit.
+- Incremental loading is idempotent and prevents duplicate KPI totals.
+- Run summaries and quality scores explain whether data can be trusted.
+- SQLite was chosen for portability; the model can move to PostgreSQL later.
 
 ## CV Bullets
 
-- Built a retail data pipeline that generates messy business exports, cleans and validates raw sales data, loads SQLite tables, and exports Tableau-ready KPI datasets.
-- Implemented revenue, gross margin, monthly growth, product performance, customer analysis, and return-rate reporting with Python, pandas, SQL, and automated tests.
-- Created a recruiter-ready BI/Data Engineering case study showing how raw business data becomes executive dashboard insights.
+- Built a Python and SQL retail ETL pipeline with YAML data contracts, rejected-row reporting, SQLite warehouse tables, KPI exports, and Streamlit executive dashboard.
+- Added full and incremental load modes with idempotent reruns, pipeline run metadata, row-count observability, data quality scoring, and GitHub Actions CI.
+- Implemented revenue, gross margin, monthly growth, product performance, customer analysis, return-rate, and data-quality reporting with pandas, SQL, pytest, Ruff, and Docker.
