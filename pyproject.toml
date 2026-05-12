@@ -16,9 +16,14 @@ retail-kpi = "pipeline.cli:main"
 
 [project.optional-dependencies]
 dev = [
+    "pytest-cov>=6.0",
     "pytest>=8.0",
+    "ruff>=0.8",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 120
