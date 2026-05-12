@@ -1,0 +1,103 @@
+customers:
+  required_columns:
+    - customer_id
+    - customer_name
+    - segment
+    - country
+    - city
+    - signup_date
+  id_column: customer_id
+  id_pattern: "^\\s*C-\\d{4}\\s*$"
+  unique_key: customer_id
+  date_columns:
+    signup_date:
+      min: "2020-01-01"
+      max: "2026-12-31"
+  allowed_values:
+    segment:
+      - Consumer
+      - Corporate
+      - Small Business
+
+products:
+  required_columns:
+    - product_id
+    - product_name
+    - category
+    - unit_cost
+    - unit_price
+  id_column: product_id
+  id_pattern: "^\\s*P-\\d{3}\\s*$"
+  unique_key: product_id
+  numeric_ranges:
+    unit_cost:
+      min: 0
+      inclusive_min: false
+    unit_price:
+      min: 0
+      inclusive_min: false
+
+orders:
+  required_columns:
+    - order_id
+    - order_date
+    - customer_id
+    - product_id
+    - quantity
+    - discount
+    - unit_price
+    - status
+  id_column: order_id
+  id_pattern: "^\\s*O-\\d{5}\\s*$"
+  unique_key: order_id
+  date_columns:
+    order_date:
+      min: "2025-01-01"
+      max: "2025-12-31"
+  numeric_ranges:
+    quantity:
+      min: 0
+      inclusive_min: false
+    discount:
+      min: 0
+      max: 0.8
+    unit_price:
+      min: 0
+      inclusive_min: false
+  allowed_values:
+    status:
+      - Completed
+      - Returned
+  foreign_keys:
+    customer_id:
+      table: customers
+      column: customer_id
+      normalize: true
+    product_id:
+      table: products
+      column: product_id
+      normalize: true
+
+returns:
+  required_columns:
+    - return_id
+    - order_id
+    - return_date
+    - reason
+    - refunded_amount
+  id_column: return_id
+  id_pattern: "^\\s*R-\\d{4}\\s*$"
+  unique_key: return_id
+  date_columns:
+    return_date:
+      min: "2025-01-01"
+      max: "2026-01-31"
+  numeric_ranges:
+    refunded_amount:
+      min: 0
+      inclusive_min: false
+  foreign_keys:
+    order_id:
+      table: orders
+      column: order_id
+      normalize: true

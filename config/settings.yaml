@@ -21,6 +21,14 @@ exports:
   customer_analysis: data/processed/dashboard_exports/customer_analysis.csv
   returns_quality: data/processed/dashboard_exports/returns_quality.csv
   data_quality_issues: data/processed/dashboard_exports/data_quality_issues.csv
+  data_quality_summary: data/processed/dashboard_exports/data_quality_summary.csv
+  pipeline_run_summary: data/processed/dashboard_exports/pipeline_run_summary.csv
+
+validation:
+  contracts: config/data_contracts.yaml
+
+quality:
+  minimum_quality_score: 0.90
 
 generator:
   seed: 42

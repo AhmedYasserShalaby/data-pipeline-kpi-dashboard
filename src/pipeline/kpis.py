@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sqlite3
+from contextlib import closing
 from pathlib import Path
 
 import pandas as pd
@@ -81,9 +82,11 @@ KPI_QUERIES = {
 }
 
 
-def export_kpis(database_path: Path, exports: dict[str, Path], issues: pd.DataFrame | None = None) -> dict[str, pd.DataFrame]:
+def export_kpis(
+    database_path: Path, exports: dict[str, Path], issues: pd.DataFrame | None = None
+) -> dict[str, pd.DataFrame]:
     outputs = {}
-    with sqlite3.connect(database_path) as connection:
+    with closing(sqlite3.connect(database_path)) as connection:
         for name, query in KPI_QUERIES.items():
             frame = pd.read_sql_query(query, connection)
             output_path = exports[name]
@@ -97,4 +100,3 @@ def export_kpis(database_path: Path, exports: dict[str, Path], issues: pd.DataFr
         issues.to_csv(output_path, index=False)
         outputs["data_quality_issues"] = issues
     return outputs
-

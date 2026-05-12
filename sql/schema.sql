@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS kpi_executive_overview;
+DROP TABLE IF EXISTS pipeline_runs;
 DROP TABLE IF EXISTS returns;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS products;
@@ -46,4 +47,19 @@ CREATE TABLE returns (
     reason TEXT NOT NULL,
     refunded_amount REAL NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+
+CREATE TABLE pipeline_runs (
+    run_id TEXT PRIMARY KEY,
+    mode TEXT NOT NULL,
+    started_at_utc TEXT NOT NULL,
+    finished_at_utc TEXT NOT NULL,
+    duration_seconds REAL NOT NULL,
+    status TEXT NOT NULL,
+    rows_read INTEGER NOT NULL,
+    rows_cleaned INTEGER NOT NULL,
+    rows_rejected INTEGER NOT NULL,
+    validation_issues INTEGER NOT NULL,
+    loaded_rows INTEGER NOT NULL,
+    exports_directory TEXT NOT NULL
 );

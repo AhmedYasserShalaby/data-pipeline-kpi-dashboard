@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import pandas as pd
 
+ISSUE_COLUMNS = ["table_name", "issue_type", "row_reference", "column_name", "issue_detail"]
+
 
 def normalize_id(series: pd.Series) -> pd.Series:
     return series.astype(str).str.strip().str.upper()
@@ -48,7 +50,9 @@ def clean_products(raw: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return frame.reset_index(drop=True), issues
 
 
-def clean_orders(raw: pd.DataFrame, customers: pd.DataFrame, products: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+def clean_orders(
+    raw: pd.DataFrame, customers: pd.DataFrame, products: pd.DataFrame
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     frame = raw.copy()
     frame["order_id"] = normalize_id(frame["order_id"])
     frame["customer_id"] = normalize_id(frame["customer_id"])
@@ -114,9 +118,11 @@ def clean_returns(raw: pd.DataFrame, orders: pd.DataFrame) -> tuple[pd.DataFrame
     return frame.reset_index(drop=True), issues
 
 
-def _issue_rows(frame: pd.DataFrame, table: str, issue_type: str) -> pd.DataFrame:
+def _issue_rows(
+    frame: pd.DataFrame, table: str, issue_type: str, column_name: str = "", issue_detail: str = ""
+) -> pd.DataFrame:
     if frame.empty:
-        return pd.DataFrame(columns=["table_name", "issue_type", "row_reference"])
+        return pd.DataFrame(columns=ISSUE_COLUMNS)
     id_column = next((column for column in frame.columns if column.endswith("_id")), None)
     references = frame[id_column].astype(str) if id_column else frame.index.astype(str)
     return pd.DataFrame(
@@ -124,6 +130,7 @@ def _issue_rows(frame: pd.DataFrame, table: str, issue_type: str) -> pd.DataFram
             "table_name": table,
             "issue_type": issue_type,
             "row_reference": references,
+            "column_name": column_name,
+            "issue_detail": issue_detail,
         }
     )
-
