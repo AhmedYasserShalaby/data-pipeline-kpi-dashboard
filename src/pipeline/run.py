@@ -7,8 +7,10 @@ import pandas as pd
 from pipeline.cleaning import clean_customers, clean_orders, clean_products, clean_returns
 from pipeline.config import ensure_parent, load_settings, project_path
 from pipeline.contracts import load_contracts, validate_contracts
+from pipeline.diagnostics import write_quality_diagnosis
 from pipeline.health import assert_pipeline_outputs
 from pipeline.kpis import export_kpis
+from pipeline.lineage import write_lineage
 from pipeline.load import load_sqlite, record_pipeline_run
 from pipeline.observability import build_run_summary, build_table_counts, utc_now, write_run_summary
 from pipeline.paths import PROJECT_ROOT
@@ -75,6 +77,8 @@ def run_pipeline(mode: str = "full") -> dict[str, Path]:
     quality_summary = build_quality_summary(raw_counts, clean_counts, issues)
     quality_summary.to_csv(export_paths["data_quality_summary"], index=False)
     write_quality_report(quality_summary, issues, PROJECT_ROOT / "docs" / "data_quality_report.md")
+    write_quality_diagnosis(quality_summary, issues)
+    write_lineage()
     finished_at = utc_now()
     table_counts = build_table_counts(raw_counts, clean_counts, loaded_counts)
     run_summary = build_run_summary(

@@ -41,6 +41,14 @@ def test_cli_main_runs_pipeline_and_exports_kpis(monkeypatch, capsys):
     main()
     assert "Built analytics model views" in capsys.readouterr().out
 
+    monkeypatch.setattr("sys.argv", ["retail-kpi", "diagnose-quality"])
+    main()
+    assert "Quality diagnosis" in capsys.readouterr().out
+
+    monkeypatch.setattr("sys.argv", ["retail-kpi", "export-lineage"])
+    main()
+    assert "Lineage doc" in capsys.readouterr().out
+
     monkeypatch.setattr("sys.argv", ["retail-kpi", "validate-contracts"])
     main()
     assert "Contract issues found" in capsys.readouterr().out

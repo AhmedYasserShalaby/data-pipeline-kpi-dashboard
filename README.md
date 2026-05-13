@@ -17,6 +17,8 @@ This repo is meant to prove junior data engineering habits:
 - SQL KPI exports
 - dbt-style staging/intermediate/mart SQL model views
 - optional Airflow DAG for orchestration proof
+- root-cause quality diagnosis and remediation backlog
+- data lineage documentation
 - dashboard-ready outputs
 - tests, linting, Docker, CI, and secret scanning
 
@@ -41,6 +43,8 @@ Retail managers receive disconnected CSV exports from customer, product, order, 
 - SQL KPI exports for executive reporting
 - Lightweight dbt-style SQL model layer under `models/`
 - Optional Airflow DAG showing scheduled validation, loading, modeling, and export flow
+- Quality diagnosis report that turns validation issues into root-cause and remediation actions
+- Lineage documentation for raw sources, trusted warehouse tables, model layers, and dashboards
 - Pipeline health checks for required exports, quality score thresholds, and KPI/database consistency
 - Streamlit dashboard with executive, sales, product, customer, and data-quality views
 - CI with Ruff linting, Ruff format check, pytest coverage, smoke tests, export integrity checks, and secret scanning
@@ -127,6 +131,8 @@ retail-kpi run-pipeline --mode full
 retail-kpi run-pipeline --mode incremental
 retail-kpi run-kpis
 retail-kpi run-models
+retail-kpi diagnose-quality
+retail-kpi export-lineage
 retail-kpi validate-contracts
 ```
 
@@ -185,9 +191,11 @@ Latest full run:
 - [Architecture](docs/architecture.md)
 - [Analytics models](docs/analytics_models.md)
 - [Orchestration example](docs/orchestration.md)
+- [Data lineage](docs/lineage.md)
 - [KPI definitions](docs/kpi_definitions.md)
 - [Data contracts](docs/data_contracts.md)
 - [Data quality report](docs/data_quality_report.md)
+- [Quality diagnosis](docs/quality_diagnosis.md)
 - [Run summary](docs/run_summary.md)
 - [Deployment guide](docs/deployment.md)
 - [Interview guide](docs/interview_guide.md)
@@ -201,6 +209,7 @@ Latest full run:
 - Incremental loading is idempotent and prevents duplicate KPI totals.
 - The `models/` layer shows staging, intermediate, and mart SQL organization.
 - The optional Airflow DAG shows how the pipeline could be scheduled.
+- The quality diagnosis report explains root cause, severity, and remediation, not just row counts.
 - Run summaries and quality scores explain whether data can be trusted.
 - SQLite was chosen for portability; the model can move to PostgreSQL later.
 

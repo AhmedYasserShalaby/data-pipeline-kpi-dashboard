@@ -6,8 +6,10 @@ import pandas as pd
 
 from pipeline.config import load_settings, project_path
 from pipeline.contracts import load_contracts, validate_contracts
+from pipeline.diagnostics import diagnose_current_outputs
 from pipeline.generate_data import generate_all
 from pipeline.kpis import export_kpis
+from pipeline.lineage import write_lineage
 from pipeline.models import build_analytics_models
 from pipeline.run import run_pipeline
 
@@ -20,6 +22,8 @@ def main() -> None:
     run_parser.add_argument("--mode", choices=["full", "incremental"], default="full", help="Load mode")
     subparsers.add_parser("run-kpis", help="Re-export KPI CSVs from the current SQLite database")
     subparsers.add_parser("run-models", help="Build dbt-style staging, intermediate, and mart views")
+    subparsers.add_parser("diagnose-quality", help="Write root-cause and remediation report from quality outputs")
+    subparsers.add_parser("export-lineage", help="Write data lineage documentation")
     subparsers.add_parser("validate-contracts", help="Validate raw files against YAML data contracts")
     args = parser.parse_args()
 
@@ -47,6 +51,12 @@ def main() -> None:
         print("Built analytics model views:")
         for name, row_count in row_counts.items():
             print(f"- {name}: {row_count} rows")
+    elif args.command == "diagnose-quality":
+        output_path = diagnose_current_outputs()
+        print(f"Quality diagnosis: {output_path}")
+    elif args.command == "export-lineage":
+        output_path = write_lineage()
+        print(f"Lineage doc: {output_path}")
     elif args.command == "validate-contracts":
         settings = load_settings()
         raw_tables = {name: pd.read_csv(project_path(path)) for name, path in settings["raw_data"].items()}
