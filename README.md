@@ -5,6 +5,21 @@
 
 Portfolio Data Engineering / BI project that turns messy retail exports into validated SQLite warehouse tables, KPI datasets, run summaries, and a recruiter-ready Streamlit dashboard.
 
+## Recruiter Quick Scan
+
+This repo is meant to prove junior data engineering habits:
+
+- clear business problem
+- raw-to-clean pipeline
+- explicit data contracts
+- full and incremental load modes
+- rejected-row reporting
+- SQL KPI exports
+- dashboard-ready outputs
+- tests, linting, Docker, CI, and secret scanning
+
+Start here: [Recruiter walkthrough](docs/recruiter_walkthrough.md).
+
 ## Live Demo
 
 Streamlit Cloud URL: _add after deployment._
@@ -168,6 +183,8 @@ Latest full run:
 - [Run summary](docs/run_summary.md)
 - [Deployment guide](docs/deployment.md)
 - [Interview guide](docs/interview_guide.md)
+- [Recruiter walkthrough](docs/recruiter_walkthrough.md)
+- [Production upgrade plan](docs/production_upgrade_plan.md)
 
 ## Interview Talking Points
 
