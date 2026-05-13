@@ -13,21 +13,24 @@ Done when: a recruiter can open one link and see the dashboard.
 
 ## Priority 2: dbt-Style SQL Layer
 
-- Add a `models/` folder with staging, intermediate, and mart SQL files.
-- Keep source assumptions in `models/sources.md`.
-- Add basic tests for unique keys, non-null fields, accepted statuses, and relationships.
-- Explain model grain for each mart.
+Status: first version added.
+
+- Added a `models/` folder with staging, intermediate, and mart SQL files.
+- Added `models/schema.yml` with dbt-style docs/tests.
+- Added `retail-kpi run-models`.
+- Added tests proving model views build and reconcile to warehouse revenue.
+- Added `docs/analytics_models.md`.
 
 Done when: SQL transformations look organized like analytics engineering work.
 
 ## Priority 3: Orchestration Example
 
-- Add a lightweight Airflow or Dagster example that runs:
+- Added a lightweight Airflow example that runs:
   - generate data
   - validate contracts
   - run full pipeline
+  - build analytics models
   - run KPI exports
-  - run health checks
 - Keep it optional so the main project remains easy to run.
 
 Done when: the repo shows scheduling concepts without making local setup painful.

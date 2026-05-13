@@ -8,6 +8,7 @@ from pipeline.config import load_settings, project_path
 from pipeline.contracts import load_contracts, validate_contracts
 from pipeline.generate_data import generate_all
 from pipeline.kpis import export_kpis
+from pipeline.models import build_analytics_models
 from pipeline.run import run_pipeline
 
 
@@ -18,6 +19,7 @@ def main() -> None:
     run_parser = subparsers.add_parser("run-pipeline", help="Clean raw data, load SQLite, and export dashboard files")
     run_parser.add_argument("--mode", choices=["full", "incremental"], default="full", help="Load mode")
     subparsers.add_parser("run-kpis", help="Re-export KPI CSVs from the current SQLite database")
+    subparsers.add_parser("run-models", help="Build dbt-style staging, intermediate, and mart views")
     subparsers.add_parser("validate-contracts", help="Validate raw files against YAML data contracts")
     args = parser.parse_args()
 
@@ -40,6 +42,11 @@ def main() -> None:
         print("Exported KPI files:")
         for name in outputs:
             print(f"- {name}")
+    elif args.command == "run-models":
+        row_counts = build_analytics_models()
+        print("Built analytics model views:")
+        for name, row_count in row_counts.items():
+            print(f"- {name}: {row_count} rows")
     elif args.command == "validate-contracts":
         settings = load_settings()
         raw_tables = {name: pd.read_csv(project_path(path)) for name, path in settings["raw_data"].items()}

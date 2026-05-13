@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Clean customer dimension with one row per customer.
+    tests:
+      - unique: customer_id
+      - not_null: customer_id
+  - name: stg_products
+    description: Clean product dimension with product category and unit economics.
+    tests:
+      - unique: product_id
+      - not_null: product_id
+  - name: stg_orders
+    description: Clean order fact table with one row per order.
+    tests:
+      - unique: order_id
+      - not_null: order_id
+      - relationships:
+          column_name: customer_id
+          to: stg_customers
+          field: customer_id
+      - relationships:
+          column_name: product_id
+          to: stg_products
+          field: product_id
+  - name: int_order_lines
+    description: Order fact enriched with customer and product attributes.
+  - name: mart_monthly_revenue
+    description: Monthly revenue, order, customer, AOV, and margin metrics.
+  - name: mart_product_performance
+    description: Product-level revenue, units, profit, and margin metrics.
+  - name: mart_customer_segments
+    description: Customer segment and country revenue mart.

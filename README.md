@@ -15,6 +15,8 @@ This repo is meant to prove junior data engineering habits:
 - full and incremental load modes
 - rejected-row reporting
 - SQL KPI exports
+- dbt-style staging/intermediate/mart SQL model views
+- optional Airflow DAG for orchestration proof
 - dashboard-ready outputs
 - tests, linting, Docker, CI, and secret scanning
 
@@ -37,6 +39,8 @@ Retail managers receive disconnected CSV exports from customer, product, order, 
 - Full and incremental SQLite loading with idempotent reruns
 - SQLite warehouse tables for dimensions, fact-style tables, and pipeline run metadata
 - SQL KPI exports for executive reporting
+- Lightweight dbt-style SQL model layer under `models/`
+- Optional Airflow DAG showing scheduled validation, loading, modeling, and export flow
 - Pipeline health checks for required exports, quality score thresholds, and KPI/database consistency
 - Streamlit dashboard with executive, sales, product, customer, and data-quality views
 - CI with Ruff linting, Ruff format check, pytest coverage, smoke tests, export integrity checks, and secret scanning
@@ -52,9 +56,10 @@ flowchart LR
     D --> E[SQLite warehouse]
     E --> F[SQL KPI exports]
     E --> G[Pipeline run metadata]
-    F --> H[Streamlit dashboard]
-    F --> I[Tableau-ready CSVs]
-    D --> J[Data quality report]
+    E --> H[dbt-style SQL model views]
+    F --> I[Streamlit dashboard]
+    F --> J[Tableau-ready CSVs]
+    D --> K[Data quality report]
 ```
 
 See [architecture docs](docs/architecture.md) for the warehouse ERD and design notes.
@@ -121,6 +126,7 @@ retail-kpi generate-data
 retail-kpi run-pipeline --mode full
 retail-kpi run-pipeline --mode incremental
 retail-kpi run-kpis
+retail-kpi run-models
 retail-kpi validate-contracts
 ```
 
@@ -177,6 +183,8 @@ Latest full run:
 ## Docs
 
 - [Architecture](docs/architecture.md)
+- [Analytics models](docs/analytics_models.md)
+- [Orchestration example](docs/orchestration.md)
 - [KPI definitions](docs/kpi_definitions.md)
 - [Data contracts](docs/data_contracts.md)
 - [Data quality report](docs/data_quality_report.md)
@@ -191,6 +199,8 @@ Latest full run:
 - This is an ETL/data-quality project first, dashboard second.
 - Data contracts make expected schema and business rules explicit.
 - Incremental loading is idempotent and prevents duplicate KPI totals.
+- The `models/` layer shows staging, intermediate, and mart SQL organization.
+- The optional Airflow DAG shows how the pipeline could be scheduled.
 - Run summaries and quality scores explain whether data can be trusted.
 - SQLite was chosen for portability; the model can move to PostgreSQL later.
 

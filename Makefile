@@ -1,4 +1,4 @@
-.PHONY: setup generate run incremental kpis validate test coverage lint format-check smoke dashboard docker-dashboard docker-pipeline
+.PHONY: setup generate run incremental kpis models validate test coverage lint format-check smoke dashboard docker-dashboard docker-pipeline
 
 setup:
 	python3 -m pip install -e ".[dev]"
@@ -14,6 +14,9 @@ incremental:
 
 kpis:
 	retail-kpi run-kpis
+
+models:
+	retail-kpi run-models
 
 validate:
 	retail-kpi validate-contracts
@@ -35,6 +38,7 @@ smoke:
 	retail-kpi run-pipeline --mode full
 	retail-kpi run-pipeline --mode incremental
 	retail-kpi run-kpis
+	retail-kpi run-models
 	retail-kpi validate-contracts
 
 dashboard:
