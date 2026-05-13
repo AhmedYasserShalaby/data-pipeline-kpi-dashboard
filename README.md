@@ -26,7 +26,7 @@ Start here: [Recruiter walkthrough](docs/recruiter_walkthrough.md).
 
 ## Live Demo
 
-Streamlit Cloud URL: _add after deployment._
+Streamlit Cloud URL: https://ahmed-retail-kpi-dashboard.streamlit.app/
 
 The dashboard is demo-safe: if ignored KPI exports are missing, it generates synthetic data, runs the pipeline, verifies outputs, and then loads the dashboard.
 

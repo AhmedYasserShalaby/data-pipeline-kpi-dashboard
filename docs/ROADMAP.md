@@ -4,9 +4,13 @@ Future changes are tracked as small issues and reviewed through focused PRs.
 
 ## Next
 
-- Deploy Streamlit demo and add the live URL.
 - Add Tableau Public or Power BI companion dashboard.
-- Add generated demo video to LinkedIn/GitHub profile after deployment.
+- Add generated demo video to LinkedIn/GitHub profile.
+
+## Done
+
+- Deployed Streamlit demo: https://ahmed-retail-kpi-dashboard.streamlit.app/
+- Added live URL to README.
 
 ## Later
 

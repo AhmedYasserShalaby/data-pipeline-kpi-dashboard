@@ -4,9 +4,11 @@ Goal: make the flagship project look closer to a junior data engineering work sa
 
 ## Priority 1: Live Proof
 
-- Deploy Streamlit demo.
-- Add final demo URL to README.
-- Add demo URL to GitHub profile README.
+Status: complete.
+
+- Deployed Streamlit demo: https://ahmed-retail-kpi-dashboard.streamlit.app/
+- Added final demo URL to README.
+- Added demo URL to GitHub profile README.
 - Record a short walkthrough after deployment.
 
 Done when: a recruiter can open one link and see the dashboard.

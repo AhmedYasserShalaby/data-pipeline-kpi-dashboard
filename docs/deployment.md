@@ -2,6 +2,8 @@
 
 Use Streamlit Community Cloud to create a public demo link for recruiters.
 
+Live demo: https://ahmed-retail-kpi-dashboard.streamlit.app/
+
 ## Prerequisites
 
 - GitHub repo is public: `https://github.com/HaloXD1/data-pipeline-kpi-dashboard`
@@ -27,12 +29,14 @@ The app bootstraps demo outputs when KPI CSV files are missing, so ignored gener
 
 ## After Deployment
 
-Add the live URL to:
+The live URL is already added to:
 
 - GitHub repo README
 - GitHub profile README
-- CV project line if space allows
-- LinkedIn featured/projects section
+
+Manual follow-up:
+
+- Add it to LinkedIn featured/projects section.
 
 ## Suggested Demo Text
 
