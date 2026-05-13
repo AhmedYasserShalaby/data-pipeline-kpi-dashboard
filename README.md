@@ -46,6 +46,8 @@ See [architecture docs](docs/architecture.md) for the warehouse ERD and design n
 
 ## Dashboard Preview
 
+![Retail dashboard demo](dashboard/demo/retail_dashboard_demo.gif)
+
 ![Streamlit dashboard preview](dashboard/screenshots/streamlit_dashboard.png)
 
 ## Tech Stack
