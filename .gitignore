@@ -16,3 +16,14 @@ data/processed/*.csv
 data/processed/dashboard_exports/*.csv
 dashboard/*.pbix
 dashboard/*.twbx
+
+# Internal planning / prep notes kept local only.
+docs/project_plan.md
+docs/recruiter_walkthrough.md
+docs/interview_guide.md
+docs/goal_runs/
+docs/skill_sprint/
+docs/run_summary.md
+docs/future_improvements.md
+docs/production_upgrade_plan.md
+docs/business_case.md

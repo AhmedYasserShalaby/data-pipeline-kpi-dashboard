@@ -3,11 +3,11 @@
 [![Tests](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/tests.yml)
 [![Secret Scan](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml)
 
-Portfolio Data Engineering / BI project that turns messy retail exports into validated SQLite warehouse tables, KPI datasets, run summaries, and a recruiter-ready Streamlit dashboard.
+Data Engineering / BI project that turns messy retail exports into validated SQLite warehouse tables, KPI datasets, and a Streamlit dashboard.
 
-## Recruiter Quick Scan
+## Quick Scan
 
-This repo is meant to prove junior data engineering habits:
+This repo focuses on the work behind reliable reporting:
 
 - clear business problem
 - raw-to-clean pipeline
@@ -21,8 +21,6 @@ This repo is meant to prove junior data engineering habits:
 - data lineage documentation
 - dashboard-ready outputs
 - tests, linting, Docker, CI, and secret scanning
-
-Start here: [Recruiter walkthrough](docs/recruiter_walkthrough.md).
 
 ## Live Demo
 
@@ -157,7 +155,6 @@ make dashboard
 - Data quality summary: `data/processed/dashboard_exports/data_quality_summary.csv`
 - Pipeline run summary: `data/processed/dashboard_exports/pipeline_run_summary.csv`
 - Data quality report: `docs/data_quality_report.md`
-- Pipeline run report: `docs/run_summary.md`
 - Business insights: `docs/insights.md`
 - Streamlit dashboard: `app/streamlit_dashboard.py`
 
@@ -196,22 +193,6 @@ Latest full run:
 - [Data contracts](docs/data_contracts.md)
 - [Data quality report](docs/data_quality_report.md)
 - [Quality diagnosis](docs/quality_diagnosis.md)
-- [Run summary](docs/run_summary.md)
-- [Deployment guide](docs/deployment.md)
-- [Interview guide](docs/interview_guide.md)
-- [Recruiter walkthrough](docs/recruiter_walkthrough.md)
-- [Production upgrade plan](docs/production_upgrade_plan.md)
-
-## Interview Talking Points
-
-- This is an ETL/data-quality project first, dashboard second.
-- Data contracts make expected schema and business rules explicit.
-- Incremental loading is idempotent and prevents duplicate KPI totals.
-- The `models/` layer shows staging, intermediate, and mart SQL organization.
-- The optional Airflow DAG shows how the pipeline could be scheduled.
-- The quality diagnosis report explains root cause, severity, and remediation, not just row counts.
-- Run summaries and quality scores explain whether data can be trusted.
-- SQLite was chosen for portability; the model can move to PostgreSQL later.
 
 ## CV Bullets
 
