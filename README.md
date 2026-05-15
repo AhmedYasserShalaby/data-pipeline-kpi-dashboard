@@ -1,7 +1,7 @@
 # Retail Data Pipeline and KPI Dashboard
 
-[![Tests](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/tests.yml)
-[![Secret Scan](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/HaloXD1/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml)
+[![Tests](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/tests.yml/badge.svg)](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/tests.yml)
+[![Secret Scan](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard/actions/workflows/secret-scan.yml)
 
 Portfolio Data Engineering / BI project that turns messy retail exports into validated SQLite warehouse tables, KPI datasets, run summaries, and a recruiter-ready Streamlit dashboard.
 

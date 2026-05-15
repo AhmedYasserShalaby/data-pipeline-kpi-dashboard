@@ -6,7 +6,7 @@ Live demo: https://ahmed-retail-kpi-dashboard.streamlit.app/
 
 ## Prerequisites
 
-- GitHub repo is public: `https://github.com/HaloXD1/data-pipeline-kpi-dashboard`
+- GitHub repo is public: `https://github.com/AhmedYasserShalaby/data-pipeline-kpi-dashboard`
 - App file: `app/streamlit_dashboard.py`
 - Python dependencies are installable from `requirements.txt`
 - Runtime file: `runtime.txt`
@@ -20,7 +20,7 @@ The app bootstraps demo outputs when KPI CSV files are missing, so ignored gener
 3. Click `Create app`.
 4. Choose `Deploy a public app from GitHub`.
 5. Select repository:
-   `HaloXD1/data-pipeline-kpi-dashboard`
+   `AhmedYasserShalaby/data-pipeline-kpi-dashboard`
 6. Select branch:
    `main`
 7. Set main file path:
